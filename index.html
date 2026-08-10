@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>⚠ EMERGENCY BROADCAST ⚠ Saucers Sighted Over America — Dec 5, 2026</title>
+<meta name="description" content="Emergency transmission from December 5th, 1936. Extraterrestrial visitors descend upon a nation in the depths of the Depression. Attendance compulsory. Adults only."/>
+<meta property="og:title" content="⚠ EMERGENCY BROADCAST ⚠  Saucers Sighted Over America  ·  Dec 5, 2026" />
+<meta property="og:description" content="Aliens invade during the Great Depression. Save the date. Details to follow via secure channel." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Rye&family=UnifrakturCook:wght@700&family=IM+Fell+English:ital@0;1&family=Libre+Franklin:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sepia-0:#0a0806;
+    --sepia-1:#1a140c;
+    --sepia-2:#2b2113;
+    --paper:#e8dcc0;
+    --paper-2:#d4c39a;
+    --ink:#1a140c;
+    --raygun:#7fff6a;
+    --raygun-glow:#a6ff8f;
+    --alarm:#ff3b1f;
+    --alarm-glow:#ffb199;
+    --amber:#ffb347;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--sepia-0);color:var(--paper);font-family:"IM Fell English",Georgia,serif;overflow-x:hidden}
+  body{min-height:100vh;position:relative}
+
+  /* ============ ATMOSPHERE LAYERS ============ */
+  .sky{
+    position:fixed; inset:0; z-index:0;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, #3d2f18 0%, #1a1108 40%, #08060a 80%),
+      linear-gradient(180deg,#0a0806 0%, #120c07 50%, #050403 100%);
+  }
+  .stars, .stars::before, .stars::after{
+    position:fixed; inset:-50%; z-index:1; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #fff9d6 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 60%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 80%, #ffe9a8 50%, transparent 51%),
+      radial-gradient(2px 2px at 85% 20%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 10% 65%, #fff 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 55% 15%, #fff6c9 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 45%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 90% 75%, #fff 50%, transparent 51%);
+    background-size: 600px 600px;
+    animation: twinkle 6s linear infinite;
+    opacity:.6;
+  }
+  .stars::before{ background-size:900px 900px; animation-duration:9s; opacity:.4; content:""; }
+  .stars::after{ background-size:400px 400px; animation-duration:4s; opacity:.7; content:""; }
+  @keyframes twinkle{
+    0%,100%{ filter:brightness(1)}
+    50%{ filter:brightness(1.6)}
+  }
+
+  /* (old search beams removed — beams now come from each saucer going downward) */
+
+  /* film grain */
+  .grain{
+    position:fixed; inset:-50%; z-index:9; pointer-events:none; opacity:.18;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.7 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    animation: shake .18s steps(2) infinite;
+    mix-blend-mode: overlay;
+  }
+  @keyframes shake{
+    0%{transform:translate(0,0)}
+    50%{transform:translate(-2%,1%)}
+    100%{transform:translate(1%,-1%)}
+  }
+
+  /* vignette + scanlines */
+  .vignette{ position:fixed; inset:0; z-index:10; pointer-events:none;
+    background: radial-gradient(120% 80% at 50% 40%, transparent 55%, rgba(0,0,0,.75) 100%);
+  }
+  .scanlines{ position:fixed; inset:0; z-index:11; pointer-events:none; opacity:.12;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,.06) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay;
+  }
+
+  /* snow */
+  .snow{ position:fixed; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
+  .flake{ position:absolute; top:-10vh; color:#f6ecd2; opacity:.85; font-size:14px; animation: fall linear infinite; text-shadow:0 0 3px #fff8; }
+  @keyframes fall{
+    0%{ transform:translate3d(0,-10vh,0) rotate(0)}
+    100%{ transform:translate3d(2vw,110vh,0) rotate(360deg)}
+  }
+
+  /* Wandering saucer images */
+  .ufos{ position:fixed; inset:0; z-index:5; pointer-events:none; overflow:hidden; }
+  .ufo{
+    position:absolute; top:0; left:0;
+    will-change: transform;
+    filter: drop-shadow(0 0 24px rgba(216,180,254,.5)) drop-shadow(0 0 60px rgba(216,180,254,.25));
+  }
+  .ufo img{
+    display:block; width:100%; height:auto;
+    /* Strip the black background from the JPEG. The feColorMatrix filter
+       rewrites alpha based on luminance, so pure/near-black becomes transparent
+       and colored pixels stay opaque. Works reliably regardless of stacking-context
+       isolation caused by transforms/drop-shadow on the parent. */
+    filter: url(#blackKey);
+  }
+  .ufo.u1{ width: clamp(140px, 20vw, 240px); }
+  .ufo.u2{ width: clamp(110px, 16vw, 190px); opacity:.92 }
+  .ufo.u3{ width: clamp(90px,  13vw, 160px); opacity:.85 }
+
+  /* ============ TUNING-IN OVERLAY ============ */
+  #tuner{
+    position:fixed; inset:0; z-index:1000;
+    background:radial-gradient(circle at 50% 40%, #241708 0%, #0a0604 80%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:24px; cursor:pointer;
+    transition: opacity .8s ease, visibility .8s ease;
+  }
+  #tuner.gone{ opacity:0; visibility:hidden; pointer-events:none; }
+  #tuner .radio{
+    width:min(420px,80vw); aspect-ratio: 1.6/1; border:3px solid #6b4a1e; border-radius:14px;
+    background:
+      radial-gradient(120% 90% at 50% 30%, #3a2610 0%, #1a0f06 70%),
+      linear-gradient(180deg,#2b1c0b,#160c05);
+    box-shadow: inset 0 0 40px #0008, 0 20px 40px #000a;
+    display:grid; grid-template-rows: 1fr auto; padding:18px; gap:10px; position:relative;
+  }
+  #tuner .grille{
+    background:
+      repeating-linear-gradient(90deg, #1a1207 0 2px, #3a2810 2px 5px),
+      linear-gradient(180deg,#241608,#120a04);
+    border-radius:8px; border:1px solid #6b4a1e; position:relative; overflow:hidden;
+  }
+  #tuner .grille::after{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(60% 60% at 50% 50%, transparent 60%, #000a 100%);
+  }
+  #tuner .dial{
+    height:36px; border:1px solid #6b4a1e; border-radius:6px; position:relative;
+    background: linear-gradient(180deg,#f1dfa4,#c8a866); color:#2b1a08;
+    font-family:"Special Elite",monospace; font-size:13px; overflow:hidden;
+  }
+  #tuner .dial .ticks{
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, #2b1a08 0 1px, transparent 1px 22px);
+    opacity:.65;
+  }
+  #tuner .dial .needle{
+    position:absolute; top:2px; bottom:2px; width:2px; background:var(--alarm); box-shadow:0 0 6px var(--alarm);
+    left:12%; animation: needle 2.4s ease-in-out infinite alternate;
+  }
+  #tuner .dial .lbl{ position:absolute; top:6px; left:10px; letter-spacing:2px; font-weight:700 }
+  #tuner .dial .lbl.r{ left:auto; right:10px; }
+  @keyframes needle{ from{left:8%} to{left:92%} }
+
+  #tuner h1{
+    font-family:"UnifrakturCook",serif; color:#f6e6b8; font-size: clamp(28px, 6vw, 56px);
+    margin: 22px 0 6px; text-shadow: 0 0 12px #0008;
+  }
+  #tuner .sub{ font-family:"Special Elite",monospace; color:#c8a866; letter-spacing:3px; font-size:12px; }
+  #tuner .tap{
+    margin-top:22px; padding:12px 20px; border:2px solid var(--raygun);
+    color:var(--raygun); background:transparent; border-radius:2px;
+    font-family:"Special Elite",monospace; letter-spacing:3px; font-size:13px;
+    box-shadow: 0 0 24px rgba(127,255,106,.35), inset 0 0 24px rgba(127,255,106,.15);
+    animation: pulseBtn 1.6s ease-in-out infinite;
+  }
+  @keyframes pulseBtn{
+    0%,100%{ transform:scale(1); box-shadow:0 0 24px rgba(127,255,106,.35), inset 0 0 24px rgba(127,255,106,.15) }
+    50%{ transform:scale(1.03); box-shadow:0 0 40px rgba(127,255,106,.55), inset 0 0 40px rgba(127,255,106,.25) }
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  main{
+    position:relative; z-index:20;
+    max-width:900px; margin:0 auto; padding: 72px 20px 120px;
+  }
+
+  .emergency{
+    position:sticky; top:0; z-index:30; margin:-72px -20px 32px; padding:10px 20px;
+    background: repeating-linear-gradient(90deg, #ff3b1f 0 40px, #111 40px 80px);
+    color:#fff; font-family:"Special Elite",monospace; letter-spacing:3px; font-size:12px;
+    text-align:center; box-shadow: 0 4px 20px #000c;
+    animation: flicker 3.4s steps(24) infinite;
+  }
+  .emergency .dot{
+    display:inline-block; width:10px;height:10px;border-radius:50%; background:#ff3b1f;
+    box-shadow:0 0 12px #ff3b1f; margin:0 10px; vertical-align:middle;
+    animation: blink 1s steps(2) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0 } }
+  @keyframes flicker{ 0%,97%,100%{filter:none} 98%{filter:brightness(1.6)} 99%{filter:brightness(.5)} }
+
+  .masthead{
+    color: var(--ink);
+    padding: 28px 28px 24px;
+    border: 1px solid #6b4a1e;
+    box-shadow:
+      0 30px 80px #000a,
+      inset 0 0 0 6px #efe0b088,
+      inset 0 0 60px rgba(120,80,20,.35),
+      inset 0 0 140px rgba(80,50,10,.45);
+    position:relative;
+    transform: rotate(-.25deg);
+    background-color:#ecdfb2;
+    background-image:
+      /* age spots / coffee-ring blooms */
+      radial-gradient(120px 90px at 12% 22%, rgba(120,70,10,.14), transparent 60%),
+      radial-gradient(160px 110px at 88% 78%, rgba(120,70,10,.12), transparent 60%),
+      radial-gradient(90px 70px at 68% 12%, rgba(90,50,10,.10), transparent 60%),
+      radial-gradient(70px 60px at 22% 82%, rgba(90,50,10,.10), transparent 60%),
+      /* soft uneven tone across the sheet */
+      linear-gradient(135deg, #f2e5b8 0%, #e8d9a4 50%, #ddc98a 100%);
+  }
+  /* paper fiber / grain overlay */
+  .masthead::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28 0 0 0 0 0.18 0 0 0 0 0.06 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply; opacity:.45;
+  }
+  /* subtle center fold */
+  .masthead::after{
+    content:""; position:absolute; top:14px; bottom:14px; left:50%; width:2px; pointer-events:none;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.05) 20%, rgba(0,0,0,.12) 50%, rgba(0,0,0,.05) 80%, transparent 100%);
+    transform: translateX(-1px);
+  }
+  .rag{ display:flex; align-items:baseline; justify-content:space-between; gap:18px;
+    border-bottom:3px double #2b1a08; padding-bottom:10px; margin-bottom:14px;
+    font-family:"Special Elite",monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  }
+  .rag .price{ border:1px solid #2b1a08; padding:3px 6px }
+  .title{
+    font-family:"Franklin Gothic Medium","Franklin Gothic","ITC Franklin Gothic","Libre Franklin","Helvetica Neue",Arial,sans-serif;
+    font-weight:800; font-size: clamp(26px, 4.8vw, 52px); line-height:1; text-align:center;
+    letter-spacing:.5px; color:#1a140c; text-transform:uppercase;
+    text-shadow: 0 1px 0 rgba(0,0,0,.05);
+  }
+  .subtitle{
+    font-family:"Rye", serif; text-align:center; font-size: clamp(18px, 3vw, 26px);
+    margin-top:8px; color:#3b2812;
+  }
+  .kickerRow{
+    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px;
+    margin-top:10px;
+    font-family:"Special Elite",monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    border-top:1px solid #2b1a08; border-bottom:1px solid #2b1a08; padding:6px 0;
+  }
+  .kickerRow .date{
+    text-align:center; color:#2b1a08; letter-spacing:2px; font-size: clamp(10px, 1.35vw, 12px); white-space:nowrap;
+  }
+  .kicker{ background:#2b1a08; color:var(--paper); padding:2px 8px; letter-spacing:3px }
+  @media (max-width: 640px){
+    .kickerRow{ grid-template-columns:1fr; gap:6px; text-align:center }
+    .kickerRow .date{ white-space:normal }
+  }
+
+  /* inline wire-photo — floats right, text wraps around */
+  .photo{
+    float:right;
+    width: 42%; max-width: 300px;
+    margin: 4px 0 14px 22px;
+    padding: 6px 6px 4px; background:#f2e5b8;
+    border:1px solid #6b4a1e; box-shadow: inset 0 0 20px rgba(80,50,10,.25), 0 6px 14px rgba(0,0,0,.18);
+    transform: rotate(-.8deg);
+  }
+  .photo .frame{
+    position:relative; overflow:hidden; background:#c9c0af;
+  }
+  .photo .frame img{ display:block; width:100%; height:auto; }
+  .photo .frame::before{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+    background: radial-gradient(120% 80% at 50% 50%, transparent 65%, rgba(0,0,0,.35) 100%);
+  }
+  .photo figcaption{
+    margin-top:5px; text-align:center; font-family:"IM Fell English",Georgia,serif;
+    font-style:italic; font-size:12px; color:#3b2812; letter-spacing:.2px; line-height:1.35;
+  }
+  .photo figcaption b{ font-family:"Special Elite",monospace; font-style:normal; font-size:10px; letter-spacing:2px; margin-right:4px }
+
+  .lead{
+    margin-top:22px;
+    font-family:"IM Fell English", Georgia, serif; font-size:17px; line-height:1.6; color:#1a140c;
+    text-align:justify; hyphens:auto;
+    overflow:hidden; /* contain the floated photo */
+  }
+  .lead p{ margin: 0 0 12px }
+  .lead .dropcap::first-letter{
+    font-family:"UnifrakturCook",serif; font-size:64px; float:left; line-height:.85; padding:4px 8px 0 0;
+    color:#2b1a08;
+  }
+  @media (max-width: 640px){
+    .photo{ float:none; width:auto; max-width:100%; margin: 14px auto; transform:none }
+  }
+
+  /* details slab */
+  .transmit{
+    margin-top: 28px; padding: 22px; position:relative;
+    background: #0d1a0a;
+    border: 1px solid var(--raygun);
+    color: var(--raygun);
+    font-family:"Special Elite", monospace;
+    box-shadow: 0 0 30px rgba(127,255,106,.25), inset 0 0 30px rgba(127,255,106,.08);
+    overflow:hidden;
+  }
+  .transmit::before{
+    content:""; position:absolute; inset:0;
+    background: repeating-linear-gradient(180deg, transparent 0 2px, rgba(127,255,106,.05) 2px 3px);
+    pointer-events:none;
+  }
+  .transmit .hdr{ display:flex; justify-content:space-between; font-size:11px; letter-spacing:2px; opacity:.85; margin-bottom:10px }
+  .transmit .hdr .rec{ color:var(--alarm); animation: blink 1s steps(2) infinite; }
+  .transmit .body{ font-size: clamp(14px, 2.4vw, 18px); line-height:1.7 }
+  .transmit .body .line{ display:block; white-space:pre-wrap; }
+  .caret{ display:inline-block; width:.6ch; background:var(--raygun); animation: caret 1s steps(2) infinite; margin-left:2px }
+  @keyframes caret{ 50%{ opacity:0 } }
+
+  /* ACTION BUTTONS */
+  .actions{
+    display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:28px;
+  }
+  .btn{
+    appearance:none; border:2px solid var(--raygun); background:transparent; color:var(--raygun);
+    font-family:"Special Elite",monospace; letter-spacing:2px; font-size:13px;
+    padding:12px 18px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    box-shadow: 0 0 18px rgba(127,255,106,.22), inset 0 0 18px rgba(127,255,106,.08);
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    text-transform:uppercase;
+  }
+  .btn:hover{ transform:translateY(-1px); background:rgba(127,255,106,.08); box-shadow:0 0 34px rgba(127,255,106,.4), inset 0 0 34px rgba(127,255,106,.12) }
+  .btn.warn{ border-color:var(--alarm); color:var(--alarm); box-shadow:0 0 18px rgba(255,59,31,.25), inset 0 0 18px rgba(255,59,31,.1) }
+  .btn.warn:hover{ background:rgba(255,59,31,.08) }
+  .btn .em{ font-size:16px }
+
+  /* DRESS CODE MODAL */
+  .modal{
+    position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.75); display:none;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  .modal.open{ display:flex; animation: fadeIn .25s ease }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+  .modal .card{
+    background:var(--paper); color:var(--ink); max-width:820px; width:100%; padding:24px;
+    border:2px solid #2b1a08; box-shadow:0 30px 80px #000c; position:relative;
+  }
+  .modal .close{ position:absolute; top:8px; right:12px; background:none; border:0; font-size:22px; cursor:pointer; color:#2b1a08 }
+  .modal h2{ font-family:"UnifrakturCook",serif; font-size: clamp(28px,5vw,40px); text-align:center; margin:0 0 6px }
+  .modal .lede{ text-align:center; font-family:"Special Elite",monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:.7 }
+  .modal .cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px }
+  @media(max-width:640px){ .modal .cols{ grid-template-columns:1fr } }
+  .modal .col{ border:1px solid #2b1a08; padding:16px; background:#f2e7cb; position:relative }
+  .modal .col h3{ margin:0 0 8px; font-family:"Rye",serif; font-size:20px }
+  .modal .col ul{ margin:0; padding-left:18px; font-size:15px; line-height:1.5 }
+  .modal .col.alien{ background:#0d1a0a; color:var(--raygun); border-color:var(--raygun);
+    box-shadow: inset 0 0 24px rgba(127,255,106,.1); }
+  .modal .col.alien h3{ color:var(--raygun-glow) }
+
+  /* footer */
+  footer{
+    text-align:center; margin-top:36px; font-family:"Special Elite",monospace;
+    color:#c8a866; opacity:.75; font-size:11px; letter-spacing:2px;
+  }
+
+  /* utility */
+  .glow{ text-shadow: 0 0 12px rgba(127,255,106,.55) }
+  .stamp{
+    display:inline-block; transform: rotate(-6deg); border:3px solid #ff3b1f; color:#ff3b1f;
+    padding: 4px 10px; font-family:"Rye",serif; letter-spacing:2px; margin-top:10px;
+    box-shadow: 0 0 0 2px #ff3b1f22;
+  }
+
+  /* motion safety */
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: .001s !important; animation-iteration-count: 1 !important; }
+    .grain{ display:none }
+  }
+</style>
+</head>
+<body>
+
+<!-- ATMOSPHERE -->
+<div class="sky" aria-hidden="true"></div>
+<div class="stars" aria-hidden="true"></div>
+<!-- (search beams removed; ships now project their own beams downward) -->
+<!-- SVG filter that knocks black-ish pixels transparent while keeping colored pixels solid -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="blackKey" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        3 3 3 0 -0.15"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="ufos" aria-hidden="true">
+  <!-- initial transforms set inline so ships are visible immediately, even before JS/image load -->
+  <div class="ufo u1" style="transform: translate(6vw, 6vh)"><img src="saucer.jpeg" alt=""></div>
+  <div class="ufo u2" style="transform: translate(66vw, 10vh)"><img src="saucer.jpeg" alt=""></div>
+  <div class="ufo u3" style="transform: translate(38vw, 42vh)"><img src="saucer.jpeg" alt=""></div>
+</div>
+
+<div class="snow" id="snow" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- TUNING IN GATE (audio unlock) -->
+<div id="tuner" role="button" tabindex="0" aria-label="Tap to tune in and enter the broadcast">
+  <div class="radio" aria-hidden="true">
+    <div class="grille"></div>
+    <div class="dial">
+      <span class="lbl">AM</span>
+      <div class="ticks"></div>
+      <div class="needle"></div>
+      <span class="lbl r">MHz</span>
+    </div>
+  </div>
+  <h1>Tuning In…</h1>
+  <div class="sub">FEDERAL EMERGENCY BROADCAST · WKRP 1935</div>
+  <button class="tap" id="tunerBtn" type="button">▷ TAP TO RECEIVE TRANSMISSION</button>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="emergency">
+    <span class="dot"></span> EMERGENCY BROADCAST SYSTEM &nbsp;·&nbsp; INTERCEPTED SIGNAL &nbsp;·&nbsp; DEC 5, 1936 &nbsp;·&nbsp; ATTEND AT ONCE
+    <span class="dot"></span>
+  </div>
+
+  <div class="masthead">
+    <div class="rag">
+      <span>Vol. XLVII · No. 340</span>
+      <span>THE DAILY SENTINEL</span>
+      <span class="price">TWO CENTS</span>
+    </div>
+
+    <div class="title">Saucers Sighted<br/>Over America</div>
+    <div class="subtitle">— &nbsp;Extraterrestrials Descend Amid the Great Depression&nbsp; —</div>
+
+    <div class="kickerRow">
+      <span class="kicker">SAVE&nbsp;THE&nbsp;DATE</span>
+      <span class="date">· Saturday · December 5 · 2026 · 1800 – 2200 ·</span>
+      <span class="kicker">DETAILS FORTHCOMING</span>
+    </div>
+
+    <div class="lead">
+      <!-- Wire-photo of an alien landing near a breadline -->
+      <figure class="photo" aria-label="Wire photograph: visitors descend upon a breadline">
+        <div class="frame">
+          <img src="breadline_alien_photo.jpeg" alt="A flying saucer descends upon a breadline during the Great Depression" />
+        </div>
+        <figcaption><b>WIRE PHOTO:</b> A saucer descends upon a breadline, yesterday afternoon.</figcaption>
+      </figure>
+      <p class="dropcap">Dispatches from the eastern seaboard confirm the arrival of unidentified craft above the rooftops last evening, whereupon the visitors, having surveyed our breadlines and our dance halls in equal measure, are reported to have taken a particular interest in one forthcoming holiday festivity — and saved the date, enthusiastically.</p>
+      <p>Witnesses describe the vessels as "polished as a new dime," their occupants "green, sexy, and unfailingly polite." Local authorities urge the citizenry to keep calm, dress warmly, and, above all, to <em>keep the fifth of December held open</em>. Provisions will be plentiful. Cocktails, abundant. Grievances will not be entertained.</p>
+      <p>A word to parents: the visitors have declared this gathering strictly for grown persons. Kindly arrange a sitter, a bunker, or a well-appointed decoy for your children before the invasion commences. This is no place for minors — extraterrestrial or otherwise.</p>
+      <p>Full coordinates and further instruction to arrive by secured channel in the coming weeks. Until then: press your finest wool, polish your tap shoes, and — should a saucer land in your yard — offer the pilot a cup of coffee. Manners are the last defense of these United States.</p>
+      <div style="text-align:center"><span class="stamp">HOLD THIS DATE</span></div>
+    </div>
+  </div>
+
+  <!-- TELETYPE TRANSMISSION -->
+  <div class="transmit" id="transmit" aria-live="polite">
+    <div class="hdr">
+      <span>◉ INCOMING TRANSMISSION</span>
+      <span class="rec">● REC 00:00:07</span>
+    </div>
+    <div class="body" id="tt"></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn" id="gcalBtn" href="#" target="_blank" rel="noopener">
+      <span class="em">🛸</span> Add to Google Calendar
+    </a>
+    <a class="btn" id="calBtn" href="#" download="Marys-Holiday-Birthday-Party.ics">
+      <span class="em">�</span> Apple / Outlook (.ics)
+    </a>
+    <button class="btn" id="dressBtn" type="button"><span class="em">�</span> Decode Dress Code</button>
+    <button class="btn warn" id="audioBtn" type="button"><span class="em">�</span> Radio: OFF</button>
+  </div>
+
+  <footer>
+    ✦ &nbsp; Signal originates from 12/5/2026 · 6–10 PM · Adults only · Food &amp; drink provided · Details forthcoming &nbsp; ✦<br/>
+    Filed under: Anomalies, Festivities, Confectionery
+  </footer>
+</main>
+
+<!-- DRESS CODE MODAL -->
+<div class="modal" id="dressModal" role="dialog" aria-modal="true" aria-labelledby="dressTitle">
+  <div class="card">
+    <button class="close" id="dressClose" aria-label="Close">✕</button>
+    <h2 id="dressTitle">Costume Directives</h2>
+    <div class="lede">Costumes are COMPULSORY · Suggestions below · Choose your own adventure</div>
+    <div class="cols">
+      <div class="col">
+        <h3>1930s Formal</h3>
+        <ul>
+          <li>Wool suit, waistcoat, fedora, pocket watch</li>
+          <li>Bias-cut satin, marcel waves, gloves, seamed stockings</li>
+          <li>Suspenders, oxfords, a pencil moustache if you dare</li>
+          <li>Newsboy cap, cigarette holder, hip flask</li>
+        </ul>
+      </div>
+      <div class="col alien">
+        <h3>Alien Invader</h3>
+        <ul>
+          <li>Anything metallic, tentacled, or antenna'd</li>
+          <li>Chrome, foil, and green — the more radioactive the better</li>
+          <li>Raygun optional but strongly encouraged</li>
+          <li>Third eye, extra limbs, questionable posture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ WANDERING SAUCERS (with mutual avoidance) ============ */
+(function wanderSaucers(){
+  const els = [...document.querySelectorAll('.ufo')];
+  if (!els.length) return;
+
+  // per-ship state
+  const ships = els.map((el, i) => ({
+    el, x:0, y:0, tx:0, ty:0, size: 200,
+    speed: 0.35 + Math.random()*0.35,  // px/frame — slow drift
+    rot: 0, tRot: 0
+  }));
+
+  function shipSize(s){ return s.el.offsetWidth || 200; }
+
+  // Pick a new target that's well-separated from every other ship's target and current position
+  function pickTarget(s){
+    const minSep = Math.max(s.size, 220) * 1.4;
+    const maxX = Math.max(1, window.innerWidth  - s.size);
+    const maxY = Math.max(1, window.innerHeight - s.size);
+    for (let attempt = 0; attempt < 40; attempt++){
+      const tx = Math.random() * maxX;
+      const ty = Math.random() * maxY;
+      let ok = true;
+      for (const o of ships){
+        if (o === s) continue;
+        // stay away from other ships' current positions AND their targets
+        if (Math.hypot(tx - o.x,  ty - o.y)  < minSep){ ok = false; break; }
+        if (Math.hypot(tx - o.tx, ty - o.ty) < minSep){ ok = false; break; }
+      }
+      if (ok){ s.tx = tx; s.ty = ty; s.tRot = -8 + Math.random()*16; return; }
+    }
+    // fallback: just push it far away in a random direction
+    s.tx = Math.random() * maxX;
+    s.ty = Math.random() * maxY;
+  }
+
+  // Seed initial positions well-separated and guaranteed visible on page open
+  function seed(){
+    // Fractional (x, y) of viewport for each ship's top-left corner
+    const spots = [
+      [0.06, 0.06], // top-left (visible immediately)
+      [0.68, 0.10], // top-right (visible immediately)
+      [0.38, 0.44]  // middle (visible on scroll of long article, still on-screen at open)
+    ];
+    ships.forEach((s, i) => {
+      s.size = shipSize(s);
+      const [fx, fy] = spots[i] || [Math.random(), Math.random()];
+      s.x = Math.max(0, Math.min(window.innerWidth  - s.size, window.innerWidth  * fx));
+      s.y = Math.max(0, Math.min(window.innerHeight - s.size, window.innerHeight * fy));
+      s.tx = s.x; s.ty = s.y;
+      // apply immediately so ships are visible before any target picking / animation
+      s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
+    });
+    ships.forEach(pickTarget);
+  }
+
+  function tick(){
+    for (const s of ships){
+      s.size = shipSize(s);
+
+      // steer toward target
+      let dx = s.tx - s.x, dy = s.ty - s.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < 6){ pickTarget(s); dx = s.tx - s.x; dy = s.ty - s.y; }
+      const mag = Math.max(dist, 1);
+      let vx = (dx / mag) * s.speed;
+      let vy = (dy / mag) * s.speed;
+
+      // repulsion from other ships (bounding-box aware)
+      for (const o of ships){
+        if (o === s) continue;
+        const rx = (s.x + s.size/2) - (o.x + o.size/2);
+        const ry = (s.y + s.size/2) - (o.y + o.size/2);
+        const rd = Math.hypot(rx, ry);
+        const gap = (s.size + o.size) * 0.6;  // desired minimum center-to-center gap
+        if (rd < gap && rd > 0.001){
+          const push = (gap - rd) / gap * 2.2;  // stronger push the closer they get
+          vx += (rx / rd) * push;
+          vy += (ry / rd) * push;
+        }
+      }
+
+      // apply
+      s.x += vx; s.y += vy;
+
+      // clamp to viewport
+      s.x = Math.max(0, Math.min(window.innerWidth  - s.size, s.x));
+      s.y = Math.max(0, Math.min(window.innerHeight - s.size, s.y));
+
+      // soft rotation toward target rotation
+      s.rot += (s.tRot - s.rot) * 0.02;
+
+      s.el.style.transform = `translate(${s.x}px, ${s.y}px) rotate(${s.rot}deg)`;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Seed and start animating immediately (using default sizes),
+  // then re-seed once images have loaded so positions account for real widths.
+  seed();
+  requestAnimationFrame(tick);
+  Promise.all(ships.map(s => {
+    const img = s.el.querySelector('img');
+    if (!img || img.complete) return Promise.resolve();
+    return new Promise(r => img.addEventListener('load', r, { once:true }));
+  })).then(() => { seed(); });
+
+  window.addEventListener('resize', () => { seed(); });
+})();
+
+/* ============ SNOW ============ */
+(function makeSnow(){
+  const s = document.getElementById('snow');
+  const glyphs = ['❄','❅','❆','✻','·'];
+  const n = 60;
+  for(let i=0;i<n;i++){
+    const f = document.createElement('span');
+    f.className='flake';
+    f.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+    f.style.left = (Math.random()*100)+'vw';
+    const size = 8 + Math.random()*16;
+    f.style.fontSize = size+'px';
+    f.style.opacity = .35 + Math.random()*.55;
+    const dur = 8 + Math.random()*14;
+    f.style.animationDuration = dur+'s';
+    f.style.animationDelay = (-Math.random()*dur)+'s';
+    s.appendChild(f);
+  }
+})();
+
+/* ============ AUDIO (Web Audio, no external files) ============ */
+const Audio = (function(){
+  let ctx, master, nodes = {}, on=false, started=false;
+
+  function makeNoise(kind){
+    // brown-ish noise buffer for radio static, or filtered for hum
+    const b = ctx.createBuffer(1, ctx.sampleRate*2, ctx.sampleRate);
+    const d = b.getChannelData(0);
+    let last=0;
+    for(let i=0;i<d.length;i++){
+      const w = Math.random()*2-1;
+      if(kind==='brown'){ last = (last + .02*w)/1.02; d[i]=last*3.5; }
+      else d[i] = w; // white
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = b; src.loop=true; return src;
+  }
+
+  function start(){
+    if(started) return;
+    started = true;
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+
+    // 1) radio static bed
+    const staticSrc = makeNoise('white');
+    const hp = ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=900;
+    const lp = ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2600;
+    const sGain = ctx.createGain(); sGain.gain.value = .08;
+    staticSrc.connect(hp).connect(lp).connect(sGain).connect(master);
+    staticSrc.start();
+
+    // 2) low UFO drone (two detuned sines through a slow LFO)
+    const oscA = ctx.createOscillator(); oscA.type='sine'; oscA.frequency.value=58;
+    const oscB = ctx.createOscillator(); oscB.type='sine'; oscB.frequency.value=61.5;
+    const dGain = ctx.createGain(); dGain.gain.value = .12;
+    const lfo = ctx.createOscillator(); lfo.frequency.value = .18;
+    const lfoGain = ctx.createGain(); lfoGain.gain.value = .04;
+    lfo.connect(lfoGain).connect(dGain.gain);
+    oscA.connect(dGain); oscB.connect(dGain); dGain.connect(master);
+    oscA.start(); oscB.start(); lfo.start();
+
+    // 3) theremin-y warble drifting
+    const th = ctx.createOscillator(); th.type='sine'; th.frequency.value=520;
+    const thGain = ctx.createGain(); thGain.gain.value=.02;
+    const thLfo = ctx.createOscillator(); thLfo.frequency.value=.09;
+    const thLfoGain = ctx.createGain(); thLfoGain.gain.value=180;
+    thLfo.connect(thLfoGain).connect(th.frequency);
+    const thTrem = ctx.createOscillator(); thTrem.frequency.value=5.2;
+    const thTremGain = ctx.createGain(); thTremGain.gain.value=.015;
+    thTrem.connect(thTremGain).connect(thGain.gain);
+    th.connect(thGain).connect(master);
+    th.start(); thLfo.start(); thTrem.start();
+
+    // occasional beep pings
+    setInterval(()=>{
+      if(!on) return;
+      const t = ctx.currentTime;
+      const o = ctx.createOscillator(); const g = ctx.createGain();
+      o.type='square'; o.frequency.value = 900 + Math.random()*1400;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(.04, t+.01);
+      g.gain.exponentialRampToValueAtTime(.0001, t+.18);
+      o.connect(g).connect(master);
+      o.start(t); o.stop(t+.22);
+    }, 3800);
+
+    nodes = { master };
+  }
+
+  function set(o){
+    on = !!o;
+    if(!started) start();
+    // fade to target
+    const target = on ? .55 : 0;
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.linearRampToValueAtTime(target, t+.6);
+  }
+
+  function stinger(){
+    // "we interrupt this program" sting — descending square blip
+    if(!started) start();
+    const t = ctx.currentTime;
+    const o = ctx.createOscillator(); const g = ctx.createGain();
+    o.type='sawtooth'; o.frequency.setValueAtTime(1200, t);
+    o.frequency.exponentialRampToValueAtTime(180, t+.55);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(.22, t+.02);
+    g.gain.exponentialRampToValueAtTime(.0001, t+.6);
+    const hp = ctx.createBiquadFilter(); hp.type='bandpass'; hp.frequency.value=900; hp.Q.value=1.2;
+    o.connect(hp).connect(g).connect(master);
+    o.start(t); o.stop(t+.65);
+  }
+
+  return { set, stinger, isOn:()=>on };
+})();
+
+/* ============ TUNER / ENTRY ============ */
+const tuner = document.getElementById('tuner');
+const tunerBtn = document.getElementById('tunerBtn');
+const audioBtn = document.getElementById('audioBtn');
+
+function enterBroadcast(){
+  tuner.classList.add('gone');
+  Audio.set(true);
+  audioBtn.textContent = '📻 Radio: ON';
+  audioBtn.classList.remove('warn');
+  Audio.stinger();
+  setTimeout(runTeletype, 700);
+}
+tunerBtn.addEventListener('click', enterBroadcast);
+tuner.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') enterBroadcast(); });
+tuner.addEventListener('click', (e)=>{ if(e.target===tuner) enterBroadcast(); });
+
+audioBtn.addEventListener('click', ()=>{
+  const next = !Audio.isOn();
+  Audio.set(next);
+  audioBtn.textContent = next ? '📻 Radio: ON' : '📻 Radio: OFF';
+  audioBtn.classList.toggle('warn', !next);
+});
+
+/* ============ TELETYPE ============ */
+const lines = [
+  '> ESTABLISHING SECURE LINK……… ✓',
+  '> DECRYPTING DOSSIER……… ✓',
+  '',
+  '  DATE     :: SATURDAY · 5 DECEMBER · 2026',
+  '  TIME     :: 1800 — 2200 HRS',
+  '  THEME    :: ALIENS INVADE DURING THE GREAT DEPRESSION',
+  '  ATTIRE   :: COSTUMES COMPULSORY · SEE DIRECTIVES',
+  '  VITTLES  :: FOOD & DRINK PROVIDED IN ABUNDANCE',
+  '  ADMIT    :: ADULTS ONLY — SHELTER THY CHILDREN',
+  '  RSVP     :: NOT YET REQUESTED — SAVE THE DATE ONLY',
+  '  LOCATION :: SAN LUIS YACHT CLUB, AVILA BEACH',
+  '  DETAILS  :: FURTHER INSTRUCTION FORTHCOMING',
+  '',
+  '> HOLD THIS DATE. IGNORE ALL COUNTER-BROADCASTS.',
+  '> AN OFFICIAL INVITATION WILL FOLLOW.',
+  '> END OF TRANSMISSION ▮'
+];
+function runTeletype(){
+  const el = document.getElementById('tt');
+  el.innerHTML = '';
+  let i=0;
+  function nextLine(){
+    if(i>=lines.length){
+      const c = document.createElement('span'); c.className='caret'; c.innerHTML='&nbsp;';
+      el.appendChild(c); return;
+    }
+    const ln = lines[i++];
+    const span = document.createElement('span'); span.className='line'; el.appendChild(span);
+    let j=0;
+    const speed = ln.startsWith('>')? 18 : 22;
+    (function type(){
+      if(j<=ln.length){
+        span.textContent = ln.slice(0,j++);
+        setTimeout(type, speed + Math.random()*20);
+      } else {
+        span.textContent = ln + '\n';
+        setTimeout(nextLine, ln===''? 120 : 260);
+      }
+    })();
+  }
+  nextLine();
+}
+
+/* ============ DRESS CODE MODAL ============ */
+const dressModal = document.getElementById('dressModal');
+document.getElementById('dressBtn').addEventListener('click', ()=> dressModal.classList.add('open'));
+document.getElementById('dressClose').addEventListener('click', ()=> dressModal.classList.remove('open'));
+dressModal.addEventListener('click', e=>{ if(e.target===dressModal) dressModal.classList.remove('open'); });
+
+/* ============ CALENDAR (Google + Apple/Outlook via ICS) ============ */
+(function buildCalendar(){
+  const title = "🛸 Mary's Holiday Birthday Party";
+  const description = "Theme: Aliens Invade During the Great Depression. Costumes compulsory. Food & drink provided. Adults only — shelter your children. Further instruction forthcoming — an official invitation will follow.";
+  const location = "San Luis Yacht Club, Avila Beach, CA";
+  // 6pm–10pm local (floating time, no TZ) so it lands correctly on every guest's device
+  const startLocal = '20261205T180000';
+  const endLocal   = '20261205T220000';
+
+  // --- Google Calendar link ---
+  const gcalParams = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: startLocal + '/' + endLocal,
+    details: description,
+    location: location
+  });
+  document.getElementById('gcalBtn').href =
+    'https://calendar.google.com/calendar/render?' + gcalParams.toString();
+
+  // --- Apple / Outlook .ics download ---
+  const dt = (s)=> s.replace(/[-:]/g,'').replace(/\.\d+/,'');
+  const now = new Date().toISOString();
+  const uid = 'marys-holiday-2026@save-the-date';
+  const icsDesc = description.replace(/,/g,'\\,').replace(/;/g,'\\;');
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Save The Date//Mary//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'UID:'+uid,
+    'DTSTAMP:'+dt(now),
+    'DTSTART:'+startLocal,
+    'DTEND:'+endLocal,
+    'SUMMARY:'+title,
+    'DESCRIPTION:'+icsDesc,
+    'LOCATION:'+location,
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+  document.getElementById('calBtn').href = URL.createObjectURL(blob);
+})();
+</script>
+</body>
+</html>
