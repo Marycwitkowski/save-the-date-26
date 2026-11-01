@@ -4,7 +4,7 @@ Guests reply on the invite page. This script appends each reply to a Google Shee
 
 Use a spreadsheet that is empty, or whose first tab is empty. Replies are written to the first tab. The columns are:
 
-`Timestamp` · `Name` · `Attending` · `Party size` · `Contact` · `Note`
+`Timestamp` · `Name` · `Attending` · `Plus one` · `Contact` · `Note`
 
 If that tab has no rows yet, the script adds this header row and then the reply.
 

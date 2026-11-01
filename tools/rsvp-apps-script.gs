@@ -5,12 +5,12 @@
  * then deploy it as a web app. Setup steps are in tools/README.md.
  *
  * Each submission appends one row:
- *   Timestamp | Name | Attending | Party size | Contact | Note
+ *   Timestamp | Name | Attending | Plus one | Contact | Note
  *
  * Concurrent posts take a script lock so two guests cannot write the same row.
  */
 
-var HEADERS = ['Timestamp', 'Name', 'Attending', 'Party size', 'Contact', 'Note'];
+var HEADERS = ['Timestamp', 'Name', 'Attending', 'Plus one', 'Contact', 'Note'];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -31,7 +31,7 @@ function doPost(e) {
       parseTimestamp_(first_(params, ['Timestamp', 'timestamp'])),
       clean_(first_(params, ['Name', 'name']), 200),
       clean_(first_(params, ['Attending', 'attending']), 20),
-      parseParty_(first_(params, ['Party size', 'partySize', 'party'])),
+      clean_(first_(params, ['plusOne', 'Plus one']), 20),
       clean_(first_(params, ['Contact', 'contact']), 200),
       clean_(first_(params, ['Note', 'note']), 2000)
     ]);
@@ -65,14 +65,6 @@ function parseTimestamp_(value) {
     if (!isNaN(when.getTime())) return when;
   }
   return new Date();
-}
-
-function parseParty_(value) {
-  var text = String(value == null ? '' : value).trim();
-  if (!text) return '';
-  var n = Number(text);
-  if (isFinite(n)) return n;
-  return text.slice(0, 10);
 }
 
 function clean_(value, max) {

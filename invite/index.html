@@ -414,12 +414,20 @@
           <p class="error" id="attend-error"></p>
         </fieldset>
 
-        <div class="field">
-          <label for="party">Number in your party</label>
-          <input id="party" name="party" type="number" inputmode="numeric" min="1" max="6" step="1">
-          <p class="hint" id="party-hint">Required if you are attending. 1–6.</p>
-          <p class="error" id="party-error"></p>
-        </div>
+        <fieldset class="field" id="plus-field" hidden>
+          <legend>Will you bring a plus one?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="plusOne" value="Yes">
+              <span>Yes</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="plusOne" value="No">
+              <span>No</span>
+            </label>
+          </div>
+          <p class="error" id="plus-error"></p>
+        </fieldset>
 
         <div class="field">
           <label for="contact">Email or phone <span class="opt">optional</span></label>
@@ -449,8 +457,7 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
   var form = document.getElementById('rsvp-form');
   var nameInput = document.getElementById('name');
   var attendField = document.getElementById('attend-field');
-  var partyInput = document.getElementById('party');
-  var partyHint = document.getElementById('party-hint');
+  var plusField = document.getElementById('plus-field');
   var contactInput = document.getElementById('contact');
   var noteInput = document.getElementById('note');
   var submitBtn = document.getElementById('submit-btn');
@@ -484,24 +491,22 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
     return chosen ? chosen.value : '';
   }
 
-  function syncParty() {
-    var coming = attendingValue() === 'Yes';
-    partyInput.required = coming;
-    partyInput.setAttribute('aria-required', coming ? 'true' : 'false');
-    if (coming) {
-      partyHint.textContent = 'How many, including you. 1–6.';
-    } else if (attendingValue() === 'No') {
-      partyHint.textContent = 'Not needed if you cannot attend.';
-      clearError(partyInput, 'party-error');
-    } else {
-      partyHint.textContent = 'Required if you are attending. 1–6.';
-    }
+  function plusOneValue() {
+    var chosen = plusField.querySelector('input[name="plusOne"]:checked');
+    return chosen ? chosen.value : '';
   }
 
-  function validParty(value) {
-    if (!/^\d+$/.test(value)) return false;
-    var n = Number(value);
-    return n >= 1 && n <= 6;
+  function syncPlusOne() {
+    var coming = attendingValue() === 'Yes';
+    var radios = plusField.querySelectorAll('input[name="plusOne"]');
+    plusField.hidden = !coming;
+    for (var i = 0; i < radios.length; i++) {
+      radios[i].required = coming && radios[i].value === 'Yes';
+    }
+    if (!coming) {
+      for (var j = 0; j < radios.length; j++) radios[j].checked = false;
+      clearError(plusField, 'plus-error');
+    }
   }
 
   function validate() {
@@ -527,15 +532,15 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
       clearError(attendField, 'attend-error');
     }
 
-    if (attending === 'Yes' && !validParty(partyInput.value.trim())) {
-      fail(partyInput, 'party-error', 'Enter a party size from 1 to 6.');
+    if (attending === 'Yes' && !plusOneValue()) {
+      fail(plusField, 'plus-error', 'Please choose Yes or No.');
     } else {
-      clearError(partyInput, 'party-error');
+      clearError(plusField, 'plus-error');
     }
 
     if (first) {
       var focusEl = first;
-      if (first === attendField) focusEl = attendField.querySelector('input');
+      if (first === attendField || first === plusField) focusEl = first.querySelector('input');
       if (focusEl && typeof focusEl.focus === 'function') focusEl.focus();
     }
     return ok;
@@ -556,11 +561,12 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
   }
 
   form.addEventListener('change', function (event) {
-    if (event.target && event.target.name === 'attending') syncParty();
+    if (!event.target) return;
+    if (event.target.name === 'attending') syncPlusOne();
+    if (event.target.name === 'plusOne') clearError(plusField, 'plus-error');
   });
 
   nameInput.addEventListener('input', function () { clearError(nameInput, 'name-error'); });
-  partyInput.addEventListener('input', function () { clearError(partyInput, 'party-error'); });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -577,7 +583,7 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
     payload.set('Timestamp', new Date().toISOString());
     payload.set('Name', nameInput.value.trim());
     payload.set('Attending', attending);
-    payload.set('Party size', attending === 'Yes' ? String(Number(partyInput.value.trim())) : '');
+    payload.set('plusOne', attending === 'Yes' ? plusOneValue() : '');
     payload.set('Contact', contactInput.value.trim());
     payload.set('Note', noteInput.value.trim());
 
@@ -597,7 +603,7 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
     });
   });
 
-  syncParty();
+  syncPlusOne();
 })();
 </script>
 </body>
