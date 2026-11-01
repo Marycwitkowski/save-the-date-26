@@ -355,6 +355,8 @@
     margin-bottom: 0.8rem;
   }
 
+  input.honey { display: none; }
+
   @media (min-width: 900px) {
     .stage { padding-top: 1.75rem; }
   }
@@ -392,6 +394,8 @@
         <noscript>
           <p class="noscript">This reply needs JavaScript. Open the link in a browser that allows it.</p>
         </noscript>
+
+        <input class="honey" type="text" id="honey" name="_honey" autocomplete="off" tabindex="-1" aria-hidden="true">
 
         <div class="field">
           <label for="name">Name</label>
@@ -449,9 +453,7 @@
 </main>
 
 <script>
-// After deploying the Apps Script web app, paste its /exec URL here.
-// While this is still the placeholder, guests see "RSVPs open soon".
-const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/maryc.witkowski@gmail.com';
 
 (function () {
   var form = document.getElementById('rsvp-form');
@@ -460,6 +462,7 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
   var plusField = document.getElementById('plus-field');
   var contactInput = document.getElementById('contact');
   var noteInput = document.getElementById('note');
+  var honeyInput = document.getElementById('honey');
   var submitBtn = document.getElementById('submit-btn');
   var statusEl = document.getElementById('status');
   var resultEl = document.getElementById('result');
@@ -546,11 +549,6 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
     return ok;
   }
 
-  function endpointIsPlaceholder() {
-    var url = (RSVP_ENDPOINT || '').trim();
-    return !url || url.indexOf('PASTE_APPS_SCRIPT_URL_HERE') !== -1;
-  }
-
   function showTerminal(message) {
     var p = document.createElement('p');
     p.textContent = message;
@@ -573,28 +571,36 @@ const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
     statusEl.textContent = '';
     if (!validate()) return;
 
-    if (endpointIsPlaceholder()) {
-      showTerminal('RSVPs open soon.');
-      return;
-    }
-
     var attending = attendingValue();
-    var payload = new URLSearchParams();
-    payload.set('Timestamp', new Date().toISOString());
-    payload.set('Name', nameInput.value.trim());
-    payload.set('Attending', attending);
-    payload.set('plusOne', attending === 'Yes' ? plusOneValue() : '');
-    payload.set('Contact', contactInput.value.trim());
-    payload.set('Note', noteInput.value.trim());
+    var name = nameInput.value.trim();
+    var data = {
+      Name: name,
+      Attending: attending,
+      'Plus one': attending === 'Yes' ? plusOneValue() : '',
+      Contact: contactInput.value.trim(),
+      Note: noteInput.value.trim(),
+      _subject: 'RSVP: ' + name + ' — ' + attending,
+      _template: 'table',
+      _captcha: 'false'
+    };
+    var honey = honeyInput.value.trim();
+    if (honey) data._honey = honey;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
-    fetch(RSVP_ENDPOINT, {
+    fetch(FORMSUBMIT_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      body: payload
-    }).then(function () {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(function (response) {
+      if (!response.ok) throw new Error('status');
+      return response.json().catch(function () { return {}; });
+    }).then(function (body) {
+      if (body && (body.success === false || body.success === 'false')) throw new Error('rejected');
       showTerminal('Your intentions have been received, Earthling.');
     }).catch(function () {
       submitBtn.disabled = false;

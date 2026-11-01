@@ -1,14 +1,24 @@
-# RSVP sheet (Google Apps Script)
+# RSVP
 
-Guests reply on the invite page. This script appends each reply to a Google Sheet you own. The page does not send anything until you paste the deployed web app URL into `RSVP_ENDPOINT` in `invite/index.html`.
+The invite page emails each reply to maryc.witkowski@gmail.com through [FormSubmit](https://formsubmit.co). On submit it `POST`s JSON to `https://formsubmit.co/ajax/maryc.witkowski@gmail.com` (`Content-Type` and `Accept` are `application/json`). The message includes Name, Attending, Plus one, Contact, and Note, plus a subject like `RSVP: Ada Lovelace — Yes`.
+
+The first real submission sends FormSubmit’s activation email to that address. Open it and confirm. Later replies arrive in the inbox. Do not use a throwaway test if you want to avoid an extra activation message; the first genuine RSVP is enough.
+
+The script in this folder is not called by the page right now. It is here if you would rather collect replies in a Google Sheet.
+
+## Switching back to the Google Sheet
+
+1. Deploy `rsvp-apps-script.gs` with the steps below and copy the web app URL. It ends in `/exec`.
+2. In `invite/index.html`, replace the FormSubmit `fetch` (the `FORMSUBMIT_URL` constant at the top of the page script) with a `POST` to that URL. Use `mode: 'no-cors'` and a form body, not JSON. Send `Timestamp`, `Name`, `Attending`, `plusOne` (`Yes`, `No`, or blank), `Contact`, and `Note`. The script reads `plusOne`, not `Plus one`.
+3. Commit and push so GitHub Pages publishes the change.
+
+## Deploy the script
 
 Use a spreadsheet that is empty, or whose first tab is empty. Replies are written to the first tab. The columns are:
 
 `Timestamp` · `Name` · `Attending` · `Plus one` · `Contact` · `Note`
 
 If that tab has no rows yet, the script adds this header row and then the reply.
-
-## Deploy
 
 1. Open the Google Sheet.
 2. Choose **Extensions → Apps Script**.
@@ -19,12 +29,11 @@ If that tab has no rows yet, the script adds this header row and then the reply.
 7. Set **Who has access** to **Anyone**.
 8. Click **Deploy**. The first time, Google asks you to authorize the script. Allow it.
 9. Copy the web app URL. It ends in `/exec`.
-10. In `invite/index.html`, replace `PASTE_APPS_SCRIPT_URL_HERE` with that URL. It is the `RSVP_ENDPOINT` constant at the top of the page script. Commit and push so GitHub Pages publishes it.
 
 Open the `/exec` URL once in a browser. You should see: `RSVP endpoint is awake. Submissions arrive by POST.`
 
-Then submit a test reply from the invite page (use your own name) and confirm a row appears. Delete the test row when you are done.
+After the page is pointed at that URL, submit a reply with your own name and confirm a row appears. Delete the test row when you are done.
 
 ## After you change the script
 
-Apps Script keeps serving the version you deployed. After any edit: **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. The `/exec` URL stays the same, so you do not need to change `RSVP_ENDPOINT` again.
+Apps Script keeps serving the version you deployed. After any edit: **Deploy → Manage deployments → Edit (pencil) → Version: New version → Deploy**. The `/exec` URL stays the same.
