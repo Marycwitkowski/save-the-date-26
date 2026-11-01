@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<title>The Visitors — RSVP</title>
+<meta name="description" content="A private invitation. Report your intentions by November 15.">
+<meta property="og:title" content="The Visitors — RSVP">
+<meta property="og:description" content="A private invitation. Report your intentions by November 15.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://marycwitkowski.github.io/save-the-date-26/invite/">
+<meta property="og:image" content="https://marycwitkowski.github.io/save-the-date-26/invite/poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="A sparkling saucer descends over a 1930s beach at night">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Visitors — RSVP">
+<meta name="twitter:description" content="A private invitation. Report your intentions by November 15.">
+<meta name="twitter:image" content="https://marycwitkowski.github.io/save-the-date-26/invite/poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Italiana&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --black: #000000;
+    --cream: #f4ead4;
+    --cream-dim: #d9ccb2;
+    --gold: #d4af37;
+    --gold-soft: rgba(212, 175, 55, 0.55);
+    --gold-faint: rgba(212, 175, 55, 0.28);
+    --blush: #e7b2a0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--black);
+    color: var(--cream);
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: "Cormorant Garamond", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.45;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(1px 1px at 8% 14%, rgba(255, 244, 214, 0.9) 50%, transparent 60%),
+      radial-gradient(1.5px 1.5px at 18% 42%, rgba(212, 175, 55, 0.85) 50%, transparent 60%),
+      radial-gradient(1px 1px at 72% 8%, rgba(255, 255, 255, 0.75) 50%, transparent 60%),
+      radial-gradient(1px 1px at 88% 28%, rgba(212, 175, 55, 0.8) 50%, transparent 60%),
+      radial-gradient(1.5px 1.5px at 92% 62%, rgba(255, 244, 214, 0.7) 50%, transparent 60%),
+      radial-gradient(1px 1px at 30% 78%, rgba(255, 255, 255, 0.55) 50%, transparent 60%),
+      radial-gradient(1px 1px at 64% 86%, rgba(212, 175, 55, 0.75) 50%, transparent 60%),
+      radial-gradient(1px 1px at 46% 22%, rgba(255, 244, 214, 0.45) 50%, transparent 60%);
+    animation: shimmer 8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stage {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--black);
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    background: var(--black);
+  }
+
+  .panel {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 1.6rem 1.15rem calc(2.75rem + env(safe-area-inset-bottom));
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 0 1.15rem;
+    color: var(--gold);
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .ornament span {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.65);
+  }
+
+  .kicker,
+  .deadline,
+  legend,
+  .field > label,
+  button {
+    font-family: Cinzel, "Palatino Linotype", Palatino, serif;
+  }
+
+  .kicker {
+    margin: 0;
+    text-align: center;
+    color: var(--gold);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    text-indent: 0.42em;
+  }
+
+  h1 {
+    margin: 0.55rem 0 0.35rem;
+    text-align: center;
+    font-family: Italiana, "Palatino Linotype", Palatino, serif;
+    font-size: clamp(1.85rem, 8vw, 2.65rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    color: var(--cream);
+  }
+
+  .deadline {
+    margin: 0 0 1.35rem;
+    text-align: center;
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .card {
+    position: relative;
+    border: 1px solid var(--gold-soft);
+    padding: 1.35rem 1.05rem 1.15rem;
+    background: var(--black);
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid var(--gold-faint);
+    pointer-events: none;
+  }
+
+  .field {
+    margin: 0 0 1.05rem;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  legend,
+  .field > label {
+    display: block;
+    margin: 0 0 0.35rem;
+    padding: 0;
+    color: var(--gold);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .opt {
+    letter-spacing: 0.08em;
+    text-transform: none;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0.55rem 0.1rem 0.45rem;
+    border: 0;
+    border-bottom: 1px solid var(--gold-soft);
+    border-radius: 0;
+    background: transparent;
+    color: var(--cream);
+    font: inherit;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    appearance: none;
+  }
+
+  textarea {
+    min-height: 6.5rem;
+    resize: vertical;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(244, 234, 212, 0.35);
+  }
+
+  input:focus,
+  textarea:focus,
+  button:focus-visible,
+  .choice:focus-within {
+    outline: 1px solid #f3e0a8;
+    outline-offset: 3px;
+  }
+
+  input:-webkit-autofill {
+    -webkit-text-fill-color: var(--cream);
+    caret-color: var(--cream);
+    box-shadow: 0 0 0 1000px #000 inset;
+  }
+
+  .hint,
+  .error,
+  .noscript {
+    margin: 0.35rem 0 0;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--cream-dim);
+  }
+
+  .error {
+    color: var(--blush);
+    min-height: 0;
+  }
+
+  .error:empty { display: none; }
+
+  .has-error input,
+  .has-error textarea,
+  fieldset.has-error .choice {
+    border-color: var(--blush);
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    border: 1px solid var(--gold-soft);
+    cursor: pointer;
+    color: var(--cream);
+    font-family: Cinzel, Palatino, serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+  }
+
+  .choice:has(input:checked) {
+    border-color: #f0d78c;
+    color: #f8e7b8;
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: inset 0 0 18px rgba(212, 175, 55, 0.16);
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 0.35rem;
+    min-height: 3.1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--cream);
+    font-size: 0.74rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  button:hover { background: rgba(212, 175, 55, 0.1); }
+
+  button:disabled {
+    opacity: 0.55;
+    cursor: progress;
+  }
+
+  .status {
+    margin: 0.75rem 0 0;
+    text-align: center;
+    color: var(--blush);
+    font-style: italic;
+  }
+
+  .status:empty { display: none; }
+
+  .result {
+    padding: 1.4rem 0.4rem 1.1rem;
+    text-align: center;
+  }
+
+  .result p {
+    margin: 0;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.55rem, 6vw, 1.95rem);
+    line-height: 1.3;
+    color: var(--cream);
+  }
+
+  .noscript {
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+
+  @media (min-width: 900px) {
+    .stage { padding-top: 1.75rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; opacity: 0.55; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="stage">
+    <video
+      controls
+      playsinline
+      webkit-playsinline
+      preload="metadata"
+      poster="poster.jpg"
+      width="1280"
+      height="720"
+      aria-label="Invitation">
+      <source src="invite.mp4" type="video/mp4">
+      Your browser cannot play this invitation.
+    </video>
+  </div>
+
+  <section class="panel" aria-labelledby="rsvp-title">
+    <div class="ornament" aria-hidden="true"><span></span></div>
+    <p class="kicker">The Visitors</p>
+    <h1 id="rsvp-title">Report your intentions</h1>
+    <p class="deadline">RSVP by November 15</p>
+
+    <div class="card">
+      <form id="rsvp-form" method="post" action="#" novalidate>
+        <noscript>
+          <p class="noscript">This reply needs JavaScript. Open the link in a browser that allows it.</p>
+        </noscript>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" maxlength="200" required>
+          <p class="error" id="name-error"></p>
+        </div>
+
+        <fieldset class="field" id="attend-field">
+          <legend>Will you attend?</legend>
+          <div class="choices">
+            <label class="choice">
+              <input type="radio" name="attending" value="Yes" required>
+              <span>Yes</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="attending" value="No">
+              <span>No</span>
+            </label>
+          </div>
+          <p class="error" id="attend-error"></p>
+        </fieldset>
+
+        <div class="field">
+          <label for="party">Number in your party</label>
+          <input id="party" name="party" type="number" inputmode="numeric" min="1" max="6" step="1">
+          <p class="hint" id="party-hint">Required if you are attending. 1–6.</p>
+          <p class="error" id="party-error"></p>
+        </div>
+
+        <div class="field">
+          <label for="contact">Email or phone <span class="opt">optional</span></label>
+          <input id="contact" name="contact" type="text" autocomplete="on" maxlength="200">
+        </div>
+
+        <div class="field">
+          <label for="note">Note for the host <span class="opt">optional</span></label>
+          <textarea id="note" name="note" rows="4" maxlength="2000"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn">Submit</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="result" id="result" hidden role="status"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+// After deploying the Apps Script web app, paste its /exec URL here.
+// While this is still the placeholder, guests see "RSVPs open soon".
+const RSVP_ENDPOINT = 'PASTE_APPS_SCRIPT_URL_HERE';
+
+(function () {
+  var form = document.getElementById('rsvp-form');
+  var nameInput = document.getElementById('name');
+  var attendField = document.getElementById('attend-field');
+  var partyInput = document.getElementById('party');
+  var partyHint = document.getElementById('party-hint');
+  var contactInput = document.getElementById('contact');
+  var noteInput = document.getElementById('note');
+  var submitBtn = document.getElementById('submit-btn');
+  var statusEl = document.getElementById('status');
+  var resultEl = document.getElementById('result');
+
+  function fieldOf(el) {
+    return el.closest('.field');
+  }
+
+  function setError(el, errorId, message) {
+    var field = fieldOf(el);
+    var out = document.getElementById(errorId);
+    out.textContent = message;
+    field.classList.add('has-error');
+    el.setAttribute('aria-invalid', 'true');
+    if (!el.hasAttribute('aria-describedby')) {
+      el.setAttribute('aria-describedby', errorId);
+    }
+  }
+
+  function clearError(el, errorId) {
+    var field = fieldOf(el);
+    document.getElementById(errorId).textContent = '';
+    field.classList.remove('has-error');
+    el.removeAttribute('aria-invalid');
+  }
+
+  function attendingValue() {
+    var chosen = form.querySelector('input[name="attending"]:checked');
+    return chosen ? chosen.value : '';
+  }
+
+  function syncParty() {
+    var coming = attendingValue() === 'Yes';
+    partyInput.required = coming;
+    partyInput.setAttribute('aria-required', coming ? 'true' : 'false');
+    if (coming) {
+      partyHint.textContent = 'How many, including you. 1–6.';
+    } else if (attendingValue() === 'No') {
+      partyHint.textContent = 'Not needed if you cannot attend.';
+      clearError(partyInput, 'party-error');
+    } else {
+      partyHint.textContent = 'Required if you are attending. 1–6.';
+    }
+  }
+
+  function validParty(value) {
+    if (!/^\d+$/.test(value)) return false;
+    var n = Number(value);
+    return n >= 1 && n <= 6;
+  }
+
+  function validate() {
+    var ok = true;
+    var first = null;
+
+    function fail(el, errorId, message) {
+      setError(el, errorId, message);
+      if (!first) first = el;
+      ok = false;
+    }
+
+    if (!nameInput.value.trim()) {
+      fail(nameInput, 'name-error', 'Please give your name.');
+    } else {
+      clearError(nameInput, 'name-error');
+    }
+
+    var attending = attendingValue();
+    if (!attending) {
+      fail(attendField, 'attend-error', 'Please choose Yes or No.');
+    } else {
+      clearError(attendField, 'attend-error');
+    }
+
+    if (attending === 'Yes' && !validParty(partyInput.value.trim())) {
+      fail(partyInput, 'party-error', 'Enter a party size from 1 to 6.');
+    } else {
+      clearError(partyInput, 'party-error');
+    }
+
+    if (first) {
+      var focusEl = first;
+      if (first === attendField) focusEl = attendField.querySelector('input');
+      if (focusEl && typeof focusEl.focus === 'function') focusEl.focus();
+    }
+    return ok;
+  }
+
+  function endpointIsPlaceholder() {
+    var url = (RSVP_ENDPOINT || '').trim();
+    return !url || url.indexOf('PASTE_APPS_SCRIPT_URL_HERE') !== -1;
+  }
+
+  function showTerminal(message) {
+    var p = document.createElement('p');
+    p.textContent = message;
+    resultEl.innerHTML = '';
+    resultEl.appendChild(p);
+    form.hidden = true;
+    resultEl.hidden = false;
+  }
+
+  form.addEventListener('change', function (event) {
+    if (event.target && event.target.name === 'attending') syncParty();
+  });
+
+  nameInput.addEventListener('input', function () { clearError(nameInput, 'name-error'); });
+  partyInput.addEventListener('input', function () { clearError(partyInput, 'party-error'); });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    statusEl.textContent = '';
+    if (!validate()) return;
+
+    if (endpointIsPlaceholder()) {
+      showTerminal('RSVPs open soon.');
+      return;
+    }
+
+    var attending = attendingValue();
+    var payload = new URLSearchParams();
+    payload.set('Timestamp', new Date().toISOString());
+    payload.set('Name', nameInput.value.trim());
+    payload.set('Attending', attending);
+    payload.set('Party size', attending === 'Yes' ? String(Number(partyInput.value.trim())) : '');
+    payload.set('Contact', contactInput.value.trim());
+    payload.set('Note', noteInput.value.trim());
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    fetch(RSVP_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: payload
+    }).then(function () {
+      showTerminal('Your intentions have been received, Earthling.');
+    }).catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+      statusEl.textContent = 'The transmission did not go through. Please try again.';
+    });
+  });
+
+  syncParty();
+})();
+</script>
+</body>
+</html>
