@@ -1,8 +1,6 @@
 # RSVP
 
-The invite page emails each reply to maryc.witkowski@gmail.com through [FormSubmit](https://formsubmit.co). On submit it `POST`s JSON to `https://formsubmit.co/ajax/maryc.witkowski@gmail.com` (`Content-Type` and `Accept` are `application/json`). The message includes Name, Attending, Plus one, Contact, and Note, plus a subject like `RSVP: Ada Lovelace — Yes`.
-
-The first real submission sends FormSubmit’s activation email to that address. Open it and confirm. Later replies arrive in the inbox. Do not use a throwaway test if you want to avoid an extra activation message; the first genuine RSVP is enough.
+The invite page emails each reply through [FormSubmit](https://formsubmit.co). On submit it `POST`s JSON to `https://formsubmit.co/ajax/11b3e3806fa1eab1fe1d91af1f1bad10` (`Content-Type` and `Accept` are `application/json`). That alias is already activated and delivers to the host’s inbox. The message includes Name, Attending, Plus one, Contact, and Note, plus a subject like `RSVP: Ada Lovelace — Yes`.
 
 The script in this folder is not called by the page right now. It is here if you would rather collect replies in a Google Sheet.
 
