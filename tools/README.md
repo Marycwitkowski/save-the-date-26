@@ -2,7 +2,7 @@
 
 The invite page emails each reply through [Web3Forms](https://web3forms.com). On submit it `POST`s JSON to `https://api.web3forms.com/submit` (`Content-Type` and `Accept` are `application/json`). The body includes `access_key`, `subject` (like `RSVP: Ada Lovelace — Yes`), `from_name` (`The Visitors RSVP`), and the fields Name, Attending, Plus one, Contact, and Note.
 
-Create an access key at [web3forms.com](https://web3forms.com), then paste it into `WEB3FORMS_ACCESS_KEY` at the top of the script in `invite/index.html` (it starts as `PASTE_WEB3FORMS_KEY_HERE`). Replies are delivered to the inbox that owns that key. A hidden `botcheck` checkbox is the honeypot; it is sent only if something checks it.
+The access key is `WEB3FORMS_ACCESS_KEY` at the top of the script in `invite/index.html`. Replies are delivered to the inbox that owns that key. A hidden `botcheck` checkbox is the honeypot; it is sent only if something checks it.
 
 The script in this folder is not called by the page right now. It is here if you would rather collect replies in a Google Sheet.
 
