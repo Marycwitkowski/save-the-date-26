@@ -355,7 +355,7 @@
     margin-bottom: 0.8rem;
   }
 
-  input.honey { display: none; }
+  input.botcheck { display: none; }
 
   @media (min-width: 900px) {
     .stage { padding-top: 1.75rem; }
@@ -395,7 +395,7 @@
           <p class="noscript">This reply needs JavaScript. Open the link in a browser that allows it.</p>
         </noscript>
 
-        <input class="honey" type="text" id="honey" name="_honey" autocomplete="off" tabindex="-1" aria-hidden="true">
+        <input class="botcheck" type="checkbox" id="botcheck" name="botcheck" tabindex="-1" aria-hidden="true" autocomplete="off">
 
         <div class="field">
           <label for="name">Name</label>
@@ -453,7 +453,7 @@
 </main>
 
 <script>
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/11b3e3806fa1eab1fe1d91af1f1bad10';
+const WEB3FORMS_ACCESS_KEY = 'PASTE_WEB3FORMS_KEY_HERE';
 
 (function () {
   var form = document.getElementById('rsvp-form');
@@ -462,7 +462,7 @@ const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/11b3e3806fa1eab1fe1d91af1f1ba
   var plusField = document.getElementById('plus-field');
   var contactInput = document.getElementById('contact');
   var noteInput = document.getElementById('note');
-  var honeyInput = document.getElementById('honey');
+  var botcheckInput = document.getElementById('botcheck');
   var submitBtn = document.getElementById('submit-btn');
   var statusEl = document.getElementById('status');
   var resultEl = document.getElementById('result');
@@ -574,22 +574,21 @@ const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/11b3e3806fa1eab1fe1d91af1f1ba
     var attending = attendingValue();
     var name = nameInput.value.trim();
     var data = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: 'RSVP: ' + name + ' — ' + attending,
+      from_name: 'The Visitors RSVP',
       Name: name,
       Attending: attending,
       'Plus one': attending === 'Yes' ? plusOneValue() : '',
       Contact: contactInput.value.trim(),
-      Note: noteInput.value.trim(),
-      _subject: 'RSVP: ' + name + ' — ' + attending,
-      _template: 'table',
-      _captcha: 'false'
+      Note: noteInput.value.trim()
     };
-    var honey = honeyInput.value.trim();
-    if (honey) data._honey = honey;
+    if (botcheckInput.checked) data.botcheck = true;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending…';
 
-    fetch(FORMSUBMIT_URL, {
+    fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -597,10 +596,13 @@ const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/11b3e3806fa1eab1fe1d91af1f1ba
       },
       body: JSON.stringify(data)
     }).then(function (response) {
-      if (!response.ok) throw new Error('status');
-      return response.json().catch(function () { return {}; });
-    }).then(function (body) {
-      if (body && (body.success === false || body.success === 'false')) throw new Error('rejected');
+      return response.json().then(function (body) {
+        return { ok: response.ok, body: body };
+      }, function () {
+        return { ok: response.ok, body: null };
+      });
+    }).then(function (result) {
+      if (!result.ok || !result.body || result.body.success !== true) throw new Error('rejected');
       showTerminal('Your intentions have been received, Earthling.');
     }).catch(function () {
       submitBtn.disabled = false;
